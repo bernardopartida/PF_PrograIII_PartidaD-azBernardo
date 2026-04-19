@@ -1,0 +1,57 @@
+# 1. ENTORNOS VIRTUALES Y CODIGO
+.venv/
+venv/
+env/
+bin/
+obj/
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+
+# 2. DOCUMENTOS Y NOTAS
+*.docx
+*.doc
+*.txt
+*.pdf
+*.rtf
+*.odt
+*.pages
+*.notero
+*.md
+*.log
+
+# 3. IMÁGENES Y FOTOS
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.webp
+*.heic
+*.heif
+*.raw
+
+# 4. VIDEOS Y AUDIO
+*.mp4
+*.mov
+*.avi
+*.wmv
+*.flv
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.aac
+*.ogg
+
+# 5. ARCHIVOS TEMPORALES Y OCULTOS DEL SISTEMA
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+.tmp
+*.bak
