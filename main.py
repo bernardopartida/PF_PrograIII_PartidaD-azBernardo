@@ -1,21 +1,41 @@
 import modelo
+import os
+from tensorflow import keras
 
-# CREAR EL ENTORNO VIRTUAL (si o si esta version)
-# python -m venv .venv
+#CREAR EL ENTORNO VIRTUAL (si o si esta version)
+#python -3.11 -m venv .venv
 
-# Habilitar el entorno virtual (en Windows)
-# .venv\Scripts\activate   <-- Nota: Corregí el comando de activación para Windows
-# En Mac/Linux sería: source .venv/bin/activate
+#Habilitar el entorno virtual (en windows)
+# .venv\Scripts\activate
 
-# Instalar las dependencias (pip install tensorflow numpy)
+#Instalar las dependencias
 
-def prediccion(modelo_entrenado):
-    resultado = modelo_entrenado.predict([100.0])
-    print(f"La temperatura 100.0°C es igual a {resultado[0][0]:.2f}°F")
+RUTA_MODELO = "modelo_entrenado.keras"
 
-if _name_ == "_main_":
-    modelo_red_neuronal, historial = modelo.entrenar_modelo()
-    # graficas.graficas(historial)
+def guardar_modelo(modelo_entrenado, ruta=RUTA_MODELO):
+    modelo_entrenado.save(ruta)
+    print(f" Modelo guardado en: {os.path.abspath(ruta)}")
+ 
     
-    # Aquí es donde le pasamos el 'modelo' en lugar del 'historial'
-    prediccion(modelo_red_neuronal)
+def cargar_modelo(ruta=RUTA_MODELO):
+    if os.path.exists(ruta):
+        print(f" Cargando modelo desde: {os.path.abspath(ruta)}")
+        return keras.models.load_model(ruta)
+    return None
+
+
+
+def prediccion(modelo_cargado):
+    resultado = modelo_cargado.predict(np.array([100.0]))
+    print(f"La temperatura 100.0°C es igual a {resultado[0][0]}°F")
+          
+          
+if __name__ == "__main__":
+    modelo_entrenado = cargar_modelo()
+          
+    if modelo_entrenado is None:
+        print("No hay modelo guardado. Entrenado...")
+        modelo_entrenado, historial = modelo.entrenar_modelo()
+        guardar_modelo(modelo_entrenado)
+    
+    prediccion(modelo_entrenado)
